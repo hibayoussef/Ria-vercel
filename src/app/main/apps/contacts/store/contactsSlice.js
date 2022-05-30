@@ -21,6 +21,14 @@ export const getUsersRequests = createAsyncThunk(
   }
 );
 
+
+export const getDepartments = async () => {
+  const response = await axios.get("/departments");
+  console.log("get Users response:  ", response);
+  return response.data.data;
+};
+
+
 export const toggleStarredContact = createAsyncThunk(
   "contactsApp/contacts/toggleStarredContact",
   async (contactId, { dispatch, getState }) => {
@@ -41,9 +49,12 @@ export const toggleStarredContact = createAsyncThunk(
 // approve user
 export const approveUser = createAsyncThunk(
   "usersRequests/approve",
-  async (id, { dispatch }) => {
+  async ({id, departmentId}, { dispatch }) => {
     const response = await axios
-      .post(`/auth-for-admin/approve-user/${id}`)
+      .post('/auth-for-admin/approve-user', {
+        id, 
+        departmentId
+      })
       .catch((err) => console.log(err));
     const data = await response.data.data;
 
@@ -192,24 +203,26 @@ const contactsSlice = createSlice({
       },
       prepare: (event) => ({ payload: event.target.value || "" }),
     },
-    // openNewContactDialog: (state, action) => {
-    //   state.contactDialog = {
-    //     type: "new",
-    //     props: {
-    //       open: true,
-    //     },
-    //     data: null,
-    //   };
-    // },
-    // closeNewContactDialog: (state, action) => {
-    //   state.contactDialog = {
-    //     type: "new",
-    //     props: {
-    //       open: false,
-    //     },
-    //     data: null,
-    //   };
-    // },
+    openNewContactDialog: (state, action) => {
+      state.contactDialog = {
+        type: "new",
+        props: {
+          open: true,
+        },
+        data: null,
+      };
+    },
+    closeNewContactDialog: (state, action) => {
+      state.contactDialog = {
+        type: "new",
+        props: {
+          open: false,
+        },
+        data: null,
+      };
+    },
+
+    
     // openEditContactDialog: (state, action) => {
     //   state.contactDialog = {
     //     type: "edit",

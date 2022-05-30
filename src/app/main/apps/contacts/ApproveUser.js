@@ -1,7 +1,6 @@
-
-import {  useState, useEffect } from "react";
-import React from "react";
+import { Fragment, useState } from "react";
 import { ButtonGroup } from "@material-ui/core";
+import React from "react";
 import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
@@ -11,14 +10,24 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import { useTheme } from "@material-ui/core/styles";
 import { useSnackbar } from "notistack";
+import Slide from "@material-ui/core/Slide";
+import { useDispatch, useSelector } from "react-redux";
 import TextField from "@material-ui/core/TextField";
 import FlagIcon from '@material-ui/icons/Flag';
 import { makeStyles } from "@material-ui/core/styles";
 import Autocomplete from '@material-ui/lab/Autocomplete';
-import { getUsers } from "../../store/worksSlice";
-import Slide from "@material-ui/core/Slide";
-import { useDispatch } from "react-redux";
-import { assignJobToUser  } from '../../store/workSlice'
+import { getDepartments } from "./store/contactsSlice";
+import { useEffect } from "react";
+import Icon from "@material-ui/core/Icon";
+import { Controller, useForm } from "react-hook-form";
+import {approveUser} from './store/contactsSlice';
+import Input from '@material-ui/core/Input';
+import InputLabel from '@material-ui/core/InputLabel';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import WorkIcon from '@material-ui/icons/Work';
+import DescriptionIcon from '@material-ui/icons/Description';
+import PostAddIcon from '@material-ui/icons/PostAdd';
+import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles((theme) => ({
     
@@ -39,36 +48,38 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const AssignJobToUser = (idJob) => {
-    console.log('idJob:', idJob)
-    const jobId = idJob?.idJob;
-  const [users, setUsers] = useState([]);
-  const [id, setId] = useState(0);
-  const [level, setLevel] = useState("");
-
+const ApproveUser = (idUser) => {
+    const id = idUser?.idUser
+    console.log('idffff: ', id)
   const [dialogOpen, setDialogOpen] = useState(false);
+  const [confirmDialogOpen, setConfirmDialogOpen] = useState(false);
+  const [assignToUserDialog, setAssignToUserDialog] = useState(false);
   const { enqueueSnackbar, closeSnackbar } = useSnackbar();
   const dispatch = useDispatch();
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down("sm"));
   const classes = useStyles();
+
+  const [users, setUsers] = useState([]);
+  const [assignmentNote, setAssignmentNote] = useState("");
+  const [userId, setUserId] = useState(0);
   //   const jobDialog = useSelector(({ jobsApp }) => worksApp.works);
   const [departmentId, setDepartmentId] = useState(0);
   const [departments, setDepartments] = useState([]);
   const [name, setName] = useState('');
   const [description, setDescription] = useState('')
-// ----------------------------------------------
-  
+
+
 
   useEffect(() => {
-    getUsers().then((response) => {
-      console.log("Users response in Assssign: ", response);
-      setUsers(response);
+    getDepartments().then((response) => {
+      console.log("departements response in approve: ", response);
+      setDepartments(response);
     });
   }, []);
-  // confirm
 
-  console.log("users: ", users);
+
+ 
  
   const handleDialogClose = () => setDialogOpen(false);
   const handleClickOpen = () => {
@@ -82,9 +93,9 @@ const AssignJobToUser = (idJob) => {
   const handleDescriptionChange =(e) =>{
     setDescription(e.target.value)
   }
-  const assignToUserToApproveInvoiceHandleClick = () => {
+   const addJobHandleClick = () => {
     enqueueSnackbar(
-      "A Job has been successfully assigned to the user",
+      "Job added successfully",
       { variant: "success" },
       {
         anchorOrigin: {
@@ -95,6 +106,7 @@ const AssignJobToUser = (idJob) => {
       { TransitionComponent: Slide }
     );
   };
+ 
  
 
  
@@ -109,10 +121,10 @@ const AssignJobToUser = (idJob) => {
           }}
           className="whitespace-nowrap"
           variant="contained"
-          color="secondary"
+        //   color="secondary"
           
         >
-          Assign Job to User 
+          Approve
         </Button>
        
       </ButtonGroup>
@@ -130,7 +142,7 @@ const AssignJobToUser = (idJob) => {
         <DialogTitle sx={{ fontWeight: "bold", fontSize: "10rem", marginBottom: '2rem', color: "#212529" }}>
       
         
-        Assign a Job to User
+         Approve User
         </DialogTitle>
         <div
           style={{
@@ -139,71 +151,55 @@ const AssignJobToUser = (idJob) => {
             marginLeft: 10,
           }}
         >
-          <DialogContentText style={{ fontWeight: 600,  padding: "2rem", paddingLeft: "2rem" }}>
+          <DialogContentText style={{ fontWeight: 600, paddingLeft: "2rem", paddingRight: "2rem", }}>
             {" "}
             <FlagIcon
               style={{ fontSize: 40, color: "#aacc00", paddingRight: "1rem" }}
             />
-            You must fill in all fields
+            When you want to approve a user, you must add that user to a Department
             
           </DialogContentText>
-          <DialogContentText  style={{ paddingRight: "2rem", paddingLeft: "2rem", paddingBottom: '2rem' }}>When you add a job, you enter a new job on the project, choose the correct job name and add it to the Department you want
+          <DialogContentText  style={{ paddingRight: "2rem", paddingLeft: "2rem", paddingBottom: '2rem' }}>
+              You must specify the Department you want to enter the user to
           </DialogContentText>
         </div>
 
         <DialogContent style={{ marginTop: "6rem" }}>
-        <div>
-
-        <Autocomplete
-            id="combo-box-demo"
-            onChange={(event, value) => {
-              console.log("value vvv:", value);
-              console.log("value.id: ", value.id);
-              setId(value.id);
-            }} // prints the selected value
-            // value={users || ""}
-            options={users || []}
-            getOptionLabel={(option) => option.name || ""}
-            sx={{ width: 860 }}
-            // defaultValue={users?.find((v) => v.name[0])}
-            renderInput={(params) => (
-              <TextField
-                {...params}
-                placeholder="Choose User"
-                variant="outlined"
-                fullWidth
-                InputProps={{ ...params.InputProps, style: { fontSize: 15 } }}
-                InputLabelProps={{ style: { fontSize: 15 } }}
-              />
-            )}
-          />
-        </div>
-
-       
+        
+        
 <div  className="mt-10" >
          
-<Autocomplete
-            id="combo-box-demo"
-            onChange={(event, value) => {
-              console.log("value vvv:", value);
-              console.log("value.id: ", value.level);
-              setLevel(value.level);
-            }} // prints the selected value
-            // value={users || ""}
-            options={levels || []}
-            getOptionLabel={(option) => option.level || ""}
-            sx={{ width: 860 }}
-            renderInput={(params) => (
-              <TextField
-                {...params}
-                placeholder="Choose Level"
-                variant="outlined"
-                fullWidth
-                InputProps={{ ...params.InputProps, style: { fontSize: 15 } }}
-                InputLabelProps={{ style: { fontSize: 15 } }}
-              />
-            )}
-          />
+          <Autocomplete
+              id="combo-box-demo"
+              onChange={(event, value) => {
+                console.log("value vvv:", value);
+                console.log("value.id: ", value.id);
+                setDepartmentId(value.id);
+              }} // prints the selected value
+              // value={users || ""}
+             
+              options={departments || []}
+              getOptionLabel={(option) => option.title || ""}
+              sx={{ width: 900 }}
+              // defaultValue={departments?.find((v) => v.title[0])}
+              renderInput={(params) => (
+                
+                <TextField
+                  {...params}
+                  variant="outlined"
+                  placeholder="Search Department"
+                  fullWidth
+                  InputProps={{ ...params.InputProps, style: { fontSize: 15  } ,  startAdornment: (
+                    <InputAdornment position="start">
+                      <PostAddIcon />
+                    </InputAdornment>
+                  )}}
+                  InputLabelProps={{ style: { fontSize: 15 } }}
+                  
+                 
+                />
+              )}
+            />
 
 </div>
   
@@ -224,11 +220,11 @@ const AssignJobToUser = (idJob) => {
             <Button
 
                 onClick={(ev) => {
-                  console.log('userId: jobId: level: ', id, jobId, level)
-                    dispatch(assignJobToUser({ id, jobId, level }));
-                    assignToUserToApproveInvoiceHandleClick(ev);
-                    handleDialogClose();
-                }}
+                    ev.stopPropagation();
+                    addJobHandleClick(ev);
+                    dispatch(approveUser({ id, departmentId }));
+                    handleDialogClose()
+                  }}
            
               style={{ color: "#212529", fontWeight: 500 }}
               color="primary"
@@ -243,11 +239,4 @@ const AssignJobToUser = (idJob) => {
   );
 };
 
-export default AssignJobToUser;
-
-const levels = [
-    { id: 1, level: "senior" },
-    { id: 2, level: "mid_level" },
-    { id: 3, level: "junior" },
-  ];
-  
+export default ApproveUser;

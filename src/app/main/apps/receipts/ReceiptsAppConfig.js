@@ -22,17 +22,18 @@ const ReceiptsAppConfig = {
   routes: [
     {
       path: "/apps/e-commerce/products/new",
-      component: lazy(() => import("./product/Product")),
-    },
-    {
-      path: "/apps/receipts/receipts",
-      component: lazy(() => import("./receipts/Receipts")),
+      component: lazy(() => import("./add-receipt/AddReceipt")),
     },
     {
       path: "/apps/e-commerce/orders/:orderId",
       component: lazy(() => import("./receipt/Receipt")),
     },
 
+    {
+      path: "/apps/receipts/receipts",
+      component: lazy(() => import("./receipts/Receipts")),
+    },
+  
     {
       path: "/apps/receipts",
       component: () => <Redirect to="/apps/receipts/receipts" />,

@@ -32,11 +32,11 @@ export const addWork = createAsyncThunk(
 
 export const assignJobToUser = createAsyncThunk(
   "worksApp/works/assignJobToUser",
-  async ({ userId, jobId, level }, { dispatch }) => {
+  async ({ id, jobId, level }, { dispatch }) => {
     console.log("hi in new function");
-    console.log("invoiceId, userId, message", userId, jobId, level);
+    console.log("invoiceId, userId, message", id, jobId, level);
     const response = await axios
-      .patch(`/users/for-admin/${userId}/assign-job`, {
+      .patch(`/users/for-admin/${id}/assign-job`, {
         jobId,
         level,
       })

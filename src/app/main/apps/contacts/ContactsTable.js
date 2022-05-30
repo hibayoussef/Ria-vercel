@@ -34,7 +34,7 @@ const IndeterminateCheckbox = forwardRef(({ indeterminate, ...rest }, ref) => {
   );
 });
 
-const EnhancedTable = ({ columns, data, onRowClick }) => {
+const EnhancedTable = ({ columns, data }) => {
   const {
     getTableProps,
     headerGroups,
@@ -134,7 +134,7 @@ const EnhancedTable = ({ columns, data, onRowClick }) => {
               return (
                 <TableRow
                   {...row.getRowProps()}
-                  onClick={(ev) => onRowClick(ev, row)}
+                  // onClick={(ev) => onRowClick(ev, row)}
                   className="truncate cursor-pointer"
                 >
                   {row.cells.map((cell) => {
@@ -183,7 +183,7 @@ const EnhancedTable = ({ columns, data, onRowClick }) => {
 EnhancedTable.propTypes = {
   columns: PropTypes.array.isRequired,
   data: PropTypes.array.isRequired,
-  onRowClick: PropTypes.func,
+  // onRowClick: PropTypes.func,
 };
 
 export default EnhancedTable;

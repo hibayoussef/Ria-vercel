@@ -11,13 +11,16 @@ import ContactsMultiSelectMenu from "./ContactsMultiSelectMenu";
 import ContactsTable from "./ContactsTable";
 import { makeStyles } from "@material-ui/core/styles";
 import Slide from "@material-ui/core/Slide";
+import  Button from "@material-ui/core/Button";
 import {
-  openEditContactDialog,
+  openNewContactDialog,
+  closeNewContactDialog,
   removeContact,
   toggleStarredContact,
   selectContacts,
 } from "./store/contactsSlice";
 import { useSnackbar } from "notistack";
+import ApproveUser from './ApproveUser';
 
 const useStyles = makeStyles({
   button1: {
@@ -143,18 +146,7 @@ function ContactsList(props) {
         sortable: false,
         Cell: ({ row }) => (
           <div className="flex items-center">
-            <IconButton
-              onClick={(ev) => {
-                ev.stopPropagation();
-                dispatch(approveUser(row.original.id));
-                // dispatch(toggleStarredContact(row.original.id));
-                handleClick(ev);
-                // dispatch(toggleStarredContact(row.original.id));
-              }}
-              className={classes.button1}
-            >
-              <Icon>done</Icon>
-            </IconButton>
+            <ApproveUser idUser={row.original.id}/>
             <IconButton
               onClick={(ev) => {
                 ev.stopPropagation();

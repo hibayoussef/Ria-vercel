@@ -119,7 +119,7 @@ function WorkDetails(props) {
 
             </div>
             <ThemeProvider theme={mainTheme}>
-              <AssignJobToUser id={order?.id} />
+              <AssignJobToUser idJob={order?.id} />
               </ThemeProvider>
           </div>
         )

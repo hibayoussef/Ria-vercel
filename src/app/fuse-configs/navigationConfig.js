@@ -152,21 +152,12 @@ const tempNavigation = [
         children: [
           {
             id: "e-commerce-products",
-            title: "Receipts",
+            title: "Receipts Details",
             type: "item",
             url: "/apps/receipts/receipts",
             exact: true,
             auth: authRoles.super_admin,
           },
-          {
-            id: "e-commerce-product-detail",
-            title: "Receipt Details",
-            type: "item",
-            url: "/apps/e-commerce/orders/1",
-            exact: true,
-            auth: authRoles.super_admin,
-          },
-
           {
             id: "e-commerce-new-product",
             title: "New Receipt",

@@ -33,7 +33,7 @@ function ShippingTab(props) {
   const classes = useStyles();
 
   const [title, setTitle] = useState("");
-  const [maxNumberOfEmployees, setMaxNumberOfEmployees] = useState();
+  const [maxNumberOfEmployees, setMaxNumberOfEmployees] = useState(0);
 
   const { enqueueSnackbar, closeSnackbar } = useSnackbar();
 
@@ -78,7 +78,6 @@ function ShippingTab(props) {
       <TextField
         className="mt-8 mb-16"
         label="Title"
-        id="extraShippingFee"
         variant="outlined"
         InputProps={{
           startAdornment: (
@@ -95,7 +94,6 @@ function ShippingTab(props) {
       <TextField
         className="mt-8 mb-16"
         label="Max Number Of Employees"
-        id="extraShippingFee"
         variant="outlined"
         InputProps={{
           startAdornment: (

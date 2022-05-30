@@ -35,9 +35,9 @@ export const addDepartement = createAsyncThunk(
 
 export const addUserToDepartement = createAsyncThunk(
   "departementsApp/departement/AddUserToDepartement",
-  async ({ departmentId, usersIds }, { dispatch }) => {
+  async ({ id, ids }, { dispatch }) => {
     console.log("hi in new function");
-    console.log("invoiceId, userId, message", id, ids);
+    console.log("ppppppppppppppppppppppp: ", id, ids);
     const response = await axios
       .post(`/departments/${id}/add-user-to-departments`, {
         ids,

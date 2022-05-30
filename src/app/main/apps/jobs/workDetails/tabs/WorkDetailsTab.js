@@ -71,7 +71,7 @@ function WorkDetailsTab() {
                 <tr>
                 <td>
                     <Typography className="truncate">
-                      {order?.id || "-"}
+                      {`${order?.id}`}
                     </Typography>
                   </td>
 
@@ -79,15 +79,16 @@ function WorkDetailsTab() {
                     <div className="flex items-center">
                       {/* <Avatar src={order.customer.avatar} /> */}
                       <Typography className="truncate mx-8">
-                       {order?.name || "-"}
+                    
+                       {`${order?.name}`}
                       </Typography>
                     </div>
                   </td>
                   
                   <td>
-                    <span className="truncate">{
-                      order?.description || "-"
-                    }</span>
+                    <span className="truncate">
+                     {`${ order?.description}`}
+                    </span>
                   </td>
                  
                 </tr>
@@ -126,7 +127,7 @@ function WorkDetailsTab() {
                 <td>
                   <span className="truncate">{`${order?.department?.id || '-'}`}</span>
                 </td>
-                <td>
+                {/* <td>
                   <span className="truncate">
                     {" "}
                     {order?.department?.title || "-"}
@@ -137,7 +138,7 @@ function WorkDetailsTab() {
                   <span className="truncate">
                     {`${order?.data?.maxNumberOfEmployees || "-"}`}
                   </span>
-                </td>
+                </td> */}
               </tr>
             </tbody>
           </table>
@@ -173,7 +174,7 @@ function WorkDetailsTab() {
               </tr>
             </thead>
             <tbody>
-              <tr>
+              {/* <tr>
                 <td>
                   <span className="truncate">{`${order?.department?.users?.associatedRoles?.userId || '-'}`}</span>
                 </td>
@@ -195,7 +196,7 @@ function WorkDetailsTab() {
                   {order?.department?.users?.phoneNumber || "-"}
                   </span>
                 </td>
-              </tr>
+              </tr> */}
             </tbody>
           </table>
         </div>

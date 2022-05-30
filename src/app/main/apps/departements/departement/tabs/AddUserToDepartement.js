@@ -60,9 +60,10 @@ const AddUserToDepartement = (departmentId) => {
   const [users, setUsers] = useState([]);
   const [assignmentNote, setAssignmentNote] = useState("");
   const [ids, setIds] = useState([]);
-  const [value, setValue] = React.useState([]);
+  // const [value, setValue] = React.useState([]);
+  // const [value, setValue] = useState(users)
 
-  console.log("value: ", value);
+  console.log("userrrrs value: ", users);
 
   useEffect(() => {
     getUsers().then((response) => {
@@ -179,24 +180,53 @@ const AddUserToDepartement = (departmentId) => {
             <FlagIcon
               style={{ fontSize: 40, color: "#aacc00", paddingRight: "1rem" }}
             />
-            Send an invoice approval request to a team member.
+           Add a user to the Depatment.
           </DialogContentText>
           <DialogContentText style={{ color: "black" }}>
-            The assigned member will receive a notification asking them to
-            approve this invoice. Once they accept, payment is on the way!
+          Once a user is added to the Department, he will become a follower 
+          of this Department and do all his work within this Department!
           </DialogContentText>
         </div>
 
         <DialogTitle style={{ color: "black" }}>
-          Assign a member to approve
+          Assign a member to Department
         </DialogTitle>
         <DialogContent>
-          <Autocomplete
+            <Autocomplete
+            onChange={(event, value) => {
+              console.log("dep vvv:", value);
+              console.log("dep.id: ", value.id);
+              setIds(value.id);
+            }}
+            multiple
+            id="tags-outlined"
+             options={users.map((option) => option.name)}
+            // getOptionLabel={(option) => option.name}
+            // defaultValue={[users[0].name]}
+            renderTags={(value, getTagProps) =>
+              value.map((option, index) => (
+                <Chip variant="outlined" label={option} {...getTagProps({ index })} />
+              ))
+            }
+            renderInput={(params) => (
+              <TextField
+                {...params}
+                variant="outlined"
+                label="Users"
+                placeholder="Choose Users"
+                fullWidth
+                // InputProps={{ ...params.InputProps, style: { fontSize: 17 } }}
+                // InputLabelProps={{ style: { fontSize: 17 } }}
+              />
+            )}
+          />
+          {/* <Autocomplete
             id="tags-filled"
             onChange={(event, value) => {
-              console.log("value vvv:", value);
-              console.log("value.id: ", value.id);
+              console.log("dep vvv:", value);
+              console.log("dep.id: ", value.id);
               setIds(value.id);
+              setValue(value)
             }} // prints the selected value
             // value={users || ""}
             multiple
@@ -222,7 +252,7 @@ const AddUserToDepartement = (departmentId) => {
                 InputLabelProps={{ style: { fontSize: 17 } }}
               />
             )}
-          />
+          /> */}
 
           {/* <Autocomplete
             value={value}

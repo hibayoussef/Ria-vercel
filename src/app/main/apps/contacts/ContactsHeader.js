@@ -22,9 +22,9 @@ function ContactsHeader(props) {
       <div className="flex flex-shrink items-center sm:w-224">
         <Hidden lgUp>
           <IconButton
-            onClick={(ev) => {
-              props.pageLayout.current.toggleLeftSidebar();
-            }}
+            // onClick={(ev) => {
+            //   props.pageLayout.current.toggleLeftSidebar();
+            // }}
             aria-label="open left sidebar"
           >
             <Icon>menu</Icon>

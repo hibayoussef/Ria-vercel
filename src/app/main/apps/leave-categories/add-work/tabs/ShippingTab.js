@@ -11,17 +11,13 @@ import Slide from "@material-ui/core/Slide";
 import { useSnackbar } from "notistack";
 import SubtitlesIcon from "@material-ui/icons/Subtitles";
 import FormatListNumberedIcon from "@material-ui/icons/FormatListNumbered";
-import { addLeave } from "../../store/leaveSlice";
+import { addWork } from "../../store/categorySlice";
 import "date-fns";
 import DateFnsUtils from "@date-io/date-fns";
 import {
   KeyboardDatePicker,
   MuiPickersUtilsProvider,
 } from "@material-ui/pickers";
-import Autocomplete from '@material-ui/lab/Autocomplete';
-import { getCategories } from "../../store/leavesSlice";
-import { useEffect } from "react";
-import PostAddIcon from '@material-ui/icons/PostAdd';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -44,9 +40,6 @@ function ShippingTab(props) {
   const [fromDate, setFromDate] = useState(new Date());
   const [toDate, setToDate] = useState(new Date());
   const [description, setDescription] = useState("");
-  const [categories, setCategories] = useState([]);
-  const [leaveCategoryId, setLeaveCategoryId] = useState(0);
-
 
   const { enqueueSnackbar, closeSnackbar } = useSnackbar();
 
@@ -63,15 +56,6 @@ function ShippingTab(props) {
   const handleDescriptionChange = (event) => {
     setDescription(event.target.value);
   };
-
-  useEffect(() => {
-    getCategories().then((response) => {
-      console.log("getCategories response in approve: ", response);
-      setCategories(response);
-    });
-  }, []);
-
-
 
   const handleDepartementCreatedMessageClick = () => {
     enqueueSnackbar(
@@ -101,6 +85,13 @@ function ShippingTab(props) {
     );
   };
 
+  const handleTitleChange = (event) => {
+    setTitle(event.target.value);
+  };
+
+  const handleMaxNumberOfEmployeesChange = (event) => {
+    setMaxNumberOfEmployees(event.target.value);
+  };
 
   return (
     <>
@@ -152,41 +143,7 @@ function ShippingTab(props) {
         onChange={handleDescriptionChange}
         fullWidth
       />
-<div  className="mt-10" >
-         
-         <Autocomplete
-             id="combo-box-demo"
-             onChange={(event, value) => {
-               console.log("value vvv:", value);
-               console.log("value.id: ", value.id);
-               setLeaveCategoryId(value.id);
-             }} // prints the selected value
-             // value={users || ""}
-            
-             options={categories || []}
-             getOptionLabel={(option) => option.name || ""}
-             sx={{ width: 900 }}
-             // defaultValue={departments?.find((v) => v.title[0])}
-             renderInput={(params) => (
-               
-               <TextField
-                 {...params}
-                 variant="outlined"
-                 placeholder="Search Category"
-                 fullWidth
-                 InputProps={{ ...params.InputProps, style: { fontSize: 15  } ,  startAdornment: (
-                   <InputAdornment position="start">
-                     <PostAddIcon />
-                   </InputAdornment>
-                 )}}
-                 InputLabelProps={{ style: { fontSize: 15 } }}
-                 
-                
-               />
-             )}
-           />
 
-</div>
       <motion.div
         initial={{ opacity: 0, x: 20 }}
         animate={{ opacity: 1, x: 0, transition: { delay: 0.3 } }}
@@ -227,7 +184,7 @@ function ShippingTab(props) {
                 paddingRight: "3rem",
               }}
               onClick={(ev) => {
-                dispatch(addLeave({ leaveCategoryId, description, fromDate, toDate }));
+                dispatch(addWork({ fromDate, toDate, description }));
                 ev.stopPropagation();
                 handleDepartementCreatedMessageClick(ev);
               }}

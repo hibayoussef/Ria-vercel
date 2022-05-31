@@ -120,7 +120,7 @@ function LeaveDetailsTab() {
 
       <div className="pb-48">
         <div className="pb-16 flex items-center">
-          <Icon color="action">access_time</Icon>
+          <Icon color="action">radio_button_checked</Icon>
           <Typography className="h2 mx-12 font-medium" color="textSecondary">
             Leave Status
           </Typography>
@@ -174,7 +174,50 @@ function LeaveDetailsTab() {
             </tbody>
           </table>
         </div>
+
+       
       </div>
+
+      <div className="pb-48">
+        <div className="pb-16 flex items-center">
+          <Icon color="action">category</Icon>
+          <Typography className="h2 mx-12 font-medium" color="textSecondary">
+            Category Leave Information
+          </Typography>
+        </div>
+
+        <div className="table-responsive">
+          <table className="simple">
+            <thead>
+              <tr>
+                <th>
+                  <Typography className="font-semibold">Name</Typography>
+                </th>
+                <th>
+                  <Typography className="font-semibold">Deduction Amount</Typography>
+                </th>
+               
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <span className="truncate">{`${order?.data?.categoryName}`}</span>
+                </td>
+
+                <td>
+                  <span className="truncate">{`${order?.data?.deductionAmount}`}</span>
+                </td>
+               
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+
+        
+      </div>
+        
       {order?.data?.status === "pending_approval" && (
         <motion.div
           initial={{ opacity: 0, x: 20 }}

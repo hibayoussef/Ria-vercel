@@ -10,6 +10,7 @@ export const getLeaves = createAsyncThunk(
   "leavesApp/leaves/getLeaves",
   async () => {
     const response = await axios.get("/leaves");
+    console.log('get all approve leaves: ', response)
     const data = await response.data.data;
     console.log("leaves from backend:", data);
 
@@ -45,7 +46,7 @@ export const {
   (state) => state.leavesApp.approvalLeaves
 );
 
-const approvalLeavesSlice = createSlice({
+const approvalLeaveSlice = createSlice({
   name: "leavesApp/leaves",
   initialState: approvalLeavesAdapter.getInitialState({
     searchText: "",
@@ -62,12 +63,12 @@ const approvalLeavesSlice = createSlice({
     [getLeaves.fulfilled]: (state, { payload }) => {
       console.log("payload: ", payload);
       const data = payload.filter((u) => u.status === "approved");
-      console.log("data approval: ", data);
+      console.log("data approval leaaave: ", data);
       approvalLeavesAdapter.setAll(state, data);
     },
   },
 });
 
-export const { setOrdersSearchText } = approvalLeavesSlice.actions;
+export const { setOrdersSearchText } = approvalLeaveSlice.actions;
 
-export default approvalLeavesSlice.reducer;
+export default approvalLeaveSlice.reducer;

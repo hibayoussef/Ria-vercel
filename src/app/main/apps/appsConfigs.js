@@ -18,6 +18,7 @@ import InvoicesAppConfig from "./invoices/InvoicesAppConfig";
 import LeavesAppConfig from "./leaves/LeavesAppConfig";
 import DepartementsAppConfig from "./departements/DepartementAppConfig";
 import WorksAppConfig from './jobs/WorksAppConfig';
+import CategoriesAppConfig from './leave-categories/CategoriesAppConfig'
 
 const appsConfigs = [
   
@@ -40,6 +41,7 @@ const appsConfigs = [
   SalaryScalesAppConfig,
   InvoicesAppConfig,
   LeavesAppConfig,
+  CategoriesAppConfig,
   DepartementsAppConfig,
  
 ];

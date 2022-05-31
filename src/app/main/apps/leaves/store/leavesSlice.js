@@ -17,6 +17,13 @@ export const getLeaves = createAsyncThunk(
   }
 );
 
+
+export const getCategories = async () => {
+  const response = await axios.get("/leaves-categories");
+  console.log("get Users response:  ", response);
+  return response.data.data;
+};
+
 export const approveLeave = createAsyncThunk(
   "leavesApp/leave/approveLeave",
   async (id, { dispatch }) => {

@@ -274,6 +274,26 @@ const tempNavigation = [
         ],
       },
 
+
+      {
+        id: "leaves-category-section",
+        title: "Leaves Categories",
+        translate: "Leaves Categories",
+        type: "collapse",
+        icon: "category",
+        url: "/apps/leaves-categories-section",
+        children: [
+          {
+            id: "leaves-categories-section-categories-requests",
+            title: "Categories",
+            type: "item",
+            url: "/apps/leaves-categories-section/categories",
+            exact: true,
+          },
+         
+        ],
+      },
+
       // **************************
 
       // {

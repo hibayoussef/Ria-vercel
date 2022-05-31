@@ -8,7 +8,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { withRouter } from "react-router-dom";
 import FuseLoading from "@fuse/core/FuseLoading";
-import { getLeaves, selectLeaves } from "../store/leavesSlice";
+import { getLeaves, selectApprovalLeaves } from "../store/approvalLeaveSlice";
 import VerifiedUserIcon from "@material-ui/icons/VerifiedUser";
 import VisibilityIcon from "@material-ui/icons/Visibility";
 import React from "react";
@@ -30,7 +30,7 @@ const useStyles = makeStyles(() => ({
 function ArchiveLeavesTable(props) {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const orders = useSelector(selectLeaves);
+  const orders = useSelector(selectApprovalLeaves);
   const searchText = useSelector(
     ({ leavesApp }) => leavesApp.leaves.searchText
   );
@@ -77,14 +77,6 @@ function ArchiveLeavesTable(props) {
     setRowsPerPage(event.target.value);
   }
 
-  const statusIcon = (status) => {
-    switch (status) {
-      case "pending_approval":
-        return <VisibilityIcon />;
-      default:
-        return <VerifiedUserIcon />;
-    }
-  };
 
   if (loading) {
     return <FuseLoading />;
@@ -98,7 +90,7 @@ function ArchiveLeavesTable(props) {
         className="flex flex-1 items-center justify-center h-full"
       >
         <Typography color="textSecondary" variant="h5">
-          There are no Leaves!
+          There are no Archive Leaves!
         </Typography>
       </motion.div>
     );

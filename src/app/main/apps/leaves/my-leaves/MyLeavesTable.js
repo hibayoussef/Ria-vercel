@@ -39,9 +39,11 @@ function MyLeavesTable(props) {
 
   useEffect(() => {
  
-    dispatch(getMyLeaves(data?.managerId)).then(() => setLoading(false));
+    dispatch(getMyLeaves(data?.requesterId)).then(() => setLoading(false));
   }, [dispatch]);
 
+  console.log("myyyy leaves: ", data);
+  
   useEffect(() => {
     if (searchText.length !== 0) {
       setData(FuseUtils.filterArrayByString(orders, searchText));

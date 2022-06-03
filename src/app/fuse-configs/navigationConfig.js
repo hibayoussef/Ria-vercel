@@ -50,7 +50,7 @@ const tempNavigation = [
         url: "/pages/profile",
       },
       {
-        auth: authRoles.super_admin,
+        auth: authRoles.admin,
         id: "Users",
         title: "Users Management",
         translate: "Users",
@@ -59,7 +59,7 @@ const tempNavigation = [
         url: "/apps/users/all",
       },
       {
-        auth: authRoles.super_admin,
+        auth: authRoles.admin,
         id: "contacts",
         title: "Registration requests",
         translate: "Registration requests",
@@ -87,7 +87,6 @@ const tempNavigation = [
         ],
       },
 
-     
       {
         id: "departements",
         title: "Departements",
@@ -249,6 +248,7 @@ const tempNavigation = [
         type: "collapse",
         icon: "radio_button_checked",
         url: "/apps/leaves-section",
+        auth: authRoles.admin,
         children: [
           {
             id: "leaves-section-leaves-requests",
@@ -274,7 +274,6 @@ const tempNavigation = [
         ],
       },
 
-
       {
         id: "leaves-category-section",
         title: "Leaves Categories",
@@ -290,7 +289,6 @@ const tempNavigation = [
             url: "/apps/leaves-categories-section/categories",
             exact: true,
           },
-         
         ],
       },
 

@@ -9,7 +9,7 @@ import { useDispatch } from "react-redux";
 import "react-datepicker/dist/react-datepicker.css";
 import Slide from "@material-ui/core/Slide";
 import { useSnackbar } from "notistack";
-import { getJobs } from "../../store/salaryScaleSlice";
+import { getJobs, addSalaryScale } from "../../store/salaryScaleSlice";
 import { useEffect } from "react";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import WorkOutlineOutlinedIcon from "@material-ui/icons/WorkOutlineOutlined";
@@ -242,7 +242,7 @@ function ShippingTab(props) {
                 paddingRight: "3rem",
               }}
               onClick={(ev) => {
-                // dispatch(assignJobToUser({ }));
+                // dispatch(addSalaryScale({ jobId, amount, employyLevel}));
                 ev.stopPropagation();
                 handleCreateInvoiceMessageClick(ev);
               }}

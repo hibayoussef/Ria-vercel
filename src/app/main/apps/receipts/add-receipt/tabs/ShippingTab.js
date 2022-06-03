@@ -111,32 +111,49 @@ function ShippingTab(props) {
 
   return (
     <>
-            <Autocomplete
-            id="combo-box-demo"
-            onChange={(event, value) => {
-              console.log("value vvv:", value);
-              console.log("value.id: ", value.id);
-              setUserId(value.id);
-            }} // prints the selected value
-            // value={users || ""}
-            options={users || []}
-            getOptionLabel={(option) => option.name || ""}
-            sx={{ width: 860 }}
-            // defaultValue={users?.find((v) => v.name[0])}
-            renderInput={(params) => (
-              <TextField
-                {...params}
-                placeholder="Choose User"
-                variant="outlined"
-                fullWidth
-                InputProps={{ ...params.InputProps, style: { fontSize: 15 } }}
-                InputLabelProps={{ style: { fontSize: 15 } }}
-              />
-            )}
+    <h4
+        style={{
+          paddingTop: "1rem",
+          paddingBottom: "2rem",
+          fontWeight: "500",
+        }}
+      >
+        Choose the user for whom you want to create a new receipt
+      </h4>
+
+      <Autocomplete
+        id="combo-box-demo"
+        onChange={(event, value) => {
+          console.log("value vvv:", value);
+          console.log("value.id: ", value.id);
+          setUserId(value.id);
+        }} // prints the selected value
+        // value={users || ""}
+        options={users || []}
+        getOptionLabel={(option) => option.name || ""}
+        sx={{ width: 860 }}
+        // defaultValue={users?.find((v) => v.name[0])}
+        renderInput={(params) => (
+          <TextField
+            {...params}
+            placeholder="Choose User"
+            variant="outlined"
+            fullWidth
+            InputProps={{ ...params.InputProps, style: { fontSize: 15 } }}
+            InputLabelProps={{ style: { fontSize: 15 } }}
           />
+        )}
+      />
 
-
-    <h3>Salary</h3>
+      <h4
+        style={{
+          paddingTop: "2rem",
+          paddingBottom: "2rem",
+          fontWeight: "500",
+        }}
+      >
+        Salary
+      </h4>
       <MuiPickersUtilsProvider utils={DateFnsUtils}>
         <div className="flex -mx-4">
           <KeyboardDatePicker
@@ -186,7 +203,7 @@ function ShippingTab(props) {
         fullWidth
       />
 
-     <TextField
+      <TextField
         className="mt-8 mb-16"
         label="allowance"
         id="extraShippingFee"
@@ -203,7 +220,15 @@ function ShippingTab(props) {
         onChange={handleDescriptionChange}
         fullWidth
       />
-      <h3>Deductions</h3>
+      <h4
+        style={{
+          paddingTop: "2rem",
+          paddingBottom: "2rem",
+          fontWeight: "500",
+        }}
+      >
+        Deductions
+      </h4>
       <TextField
         className="mt-8 mb-16"
         label="amount"
@@ -222,7 +247,7 @@ function ShippingTab(props) {
         fullWidth
       />
 
-<TextField
+      <TextField
         className="mt-8 mb-16"
         label="reason"
         id="extraShippingFee"
@@ -239,29 +264,28 @@ function ShippingTab(props) {
         onChange={handleDescriptionChange}
         fullWidth
       />
-        <Autocomplete
-            id="combo-box-demo"
-            onChange={(event, value) => {
-              console.log("value vvv:", value);
-              console.log("value.id: ", value.level);
-              setLevel(value.level);
-            }} // prints the selected value
-            // value={users || ""}
-            options={levels || []}
-            getOptionLabel={(option) => option.level || ""}
-            sx={{ width: 860 }}
-            renderInput={(params) => (
-              <TextField
-                {...params}
-                placeholder="Choose Level"
-                variant="outlined"
-                fullWidth
-                InputProps={{ ...params.InputProps, style: { fontSize: 15 } }}
-                InputLabelProps={{ style: { fontSize: 15 } }}
-              />
-            )}
+      <Autocomplete
+        id="combo-box-demo"
+        onChange={(event, value) => {
+          console.log("value vvv:", value);
+          console.log("value.id: ", value.level);
+          setLevel(value.level);
+        }} // prints the selected value
+        // value={users || ""}
+        options={levels || []}
+        getOptionLabel={(option) => option.level || ""}
+        sx={{ width: 860 }}
+        renderInput={(params) => (
+          <TextField
+            {...params}
+            placeholder="Choose Level"
+            variant="outlined"
+            fullWidth
+            InputProps={{ ...params.InputProps, style: { fontSize: 15 } }}
+            InputLabelProps={{ style: { fontSize: 15 } }}
           />
-
+        )}
+      />
 
       <motion.div
         initial={{ opacity: 0, x: 20 }}

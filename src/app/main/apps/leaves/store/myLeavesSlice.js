@@ -9,7 +9,7 @@ export const getMyLeaves = createAsyncThunk(
   "leavesApp/leaves/getMyLeaves",
   async (id) => {
     console.log("iddd: ", id);
-    const response = await axios.get("/leaves", { id });
+    const response = await axios.get(`/leaves/${id}` );
     const data = await response.data.data;
     console.log("leaves from backend My Leaves:", data);
 
@@ -37,9 +37,9 @@ const leavesSlice = createSlice({
   },
   extraReducers: {
     [getMyLeaves.fulfilled]: (state, { payload }) => {
-      console.log("payload: ", payload);
+      console.log("payload my leaves: ", payload);
       const data = payload;
-      console.log("data approval: ", data);
+      console.log("data payload my leaves: ", data);
       myLeavesAdapter.setAll(state, data);
     },
   },

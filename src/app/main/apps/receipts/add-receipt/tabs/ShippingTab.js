@@ -49,7 +49,7 @@ function ShippingTab(props) {
 
   const [users, setUsers] = useState([]);
   const [userId, setUserId] = useState(0);
-  const [level, setLevel] = useState("");
+  const [type, setType] = useState("");
 
 
   useEffect(() => {
@@ -111,7 +111,7 @@ function ShippingTab(props) {
 
   return (
     <>
-    <h4
+      <h4
         style={{
           paddingTop: "1rem",
           paddingBottom: "2rem",
@@ -268,17 +268,17 @@ function ShippingTab(props) {
         id="combo-box-demo"
         onChange={(event, value) => {
           console.log("value vvv:", value);
-          console.log("value.id: ", value.level);
-          setLevel(value.level);
+          console.log("value.id: ", value.type);
+          setType(value.type);
         }} // prints the selected value
         // value={users || ""}
-        options={levels || []}
-        getOptionLabel={(option) => option.level || ""}
+        options={types || []}
+        getOptionLabel={(option) => option.type || ""}
         sx={{ width: 860 }}
         renderInput={(params) => (
           <TextField
             {...params}
-            placeholder="Choose Level"
+            placeholder="Choose Type"
             variant="outlined"
             fullWidth
             InputProps={{ ...params.InputProps, style: { fontSize: 15 } }}
@@ -343,8 +343,8 @@ function ShippingTab(props) {
 
 export default ShippingTab;
 
-const levels = [
-    { id: 1, level: "senior" },
-    { id: 2, level: "mid_level" },
-    { id: 3, level: "junior" },
-  ];
+const types = [
+  { id: 1, type: "loan" },
+  { id: 2, type: "tax" },
+  { id: 3, type: "attendance" },
+];

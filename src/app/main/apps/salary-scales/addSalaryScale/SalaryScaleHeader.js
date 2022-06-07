@@ -36,7 +36,7 @@ function SalaryScaleHeader(props) {
             className="flex items-center sm:mb-12"
             component={Link}
             role="button"
-            to="/apps/invoices-section/invoices"
+            to="/apps/salary-scales-section/salary-scales"
             color="inherit"
           >
             <Icon className="text-20">

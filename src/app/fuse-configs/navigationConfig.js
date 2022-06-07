@@ -68,13 +68,32 @@ const tempNavigation = [
         url: "/apps/contacts/all",
       },
       {
+        id: "Jobs-hr-and-manager",
+        title: "Jobs Management",
+        translate: "Jobs",
+        type: "collapse",
+        icon: "work",
+        url: "/apps/jobs-hr-and-manager",
+        auth: authRoles.hr_manager_and_manager,
+        children: [
+          {
+            id: "display-Jobs-hr-and-manager",
+            title: "Jobs Details",
+            type: "item",
+            url: "/apps/jobs-hr-and-manager/all",
+            exact: true,
+            auth: authRoles.hr_manager_and_manager,
+          },
+        ],
+      },
+      {
         id: "Jobs",
         title: "Jobs Management",
         translate: "Jobs",
         type: "collapse",
         icon: "work",
         url: "/apps/jobs",
-        auth: authRoles.super_admin,
+        auth: authRoles.admin,
         children: [
           {
             id: "display-jobs",
@@ -82,7 +101,7 @@ const tempNavigation = [
             type: "item",
             url: "/apps/jobs",
             exact: true,
-            auth: authRoles.super_admin,
+            auth: authRoles.admin,
           },
         ],
       },
@@ -94,6 +113,7 @@ const tempNavigation = [
         type: "collapse",
         icon: "account_tree",
         url: "/apps/departements-section",
+        auth: authRoles.user,
         children: [
           {
             id: "departements-departements",
@@ -101,17 +121,46 @@ const tempNavigation = [
             type: "item",
             url: "/apps/departements-section/departementss",
             exact: true,
+            auth: authRoles.user,
           },
         ],
       },
       {
-        auth: authRoles.super_admin,
+        id: "salary-scales",
+        title: "Salary Scales Management",
+        translate: "Salary Scales",
+        type: "collapse",
+        icon: "signal_cellular_alt",
+        url: "/apps/salary-scale-section-hr-manager",
+        auth: authRoles.hr_manager_and_manager,
+        children: [
+          {
+            id: "salary-scales-dispaly",
+            title: "Salary Scales",
+            type: "item",
+            url: "/apps/salary-scales-section/salary-scales-hr-manager",
+            exact: true,
+            auth: authRoles.hr_manager_and_manager,
+          },
+          // {
+          //   id: "salary-scales-detail",
+          //   title: "Salary Scales Details",
+          //   type: "item",
+          //   url: "/apps/salary-scales-section/salary-scales-hr-manager/1",
+          //   exact: true,
+          //   auth: authRoles.hr_manager_and_manager,
+          // },
+        ],
+      },
+
+      {
         id: "salary-scales",
         title: "Salary Scales Management",
         translate: "Salary Scales",
         type: "collapse",
         icon: "signal_cellular_alt",
         url: "/apps/salary-scale-section",
+        auth: authRoles.admin,
         children: [
           {
             id: "salary-scales-dispaly",
@@ -119,7 +168,7 @@ const tempNavigation = [
             type: "item",
             url: "/apps/salary-scales-section/salary-scales",
             exact: true,
-            auth: authRoles.super_admin,
+            auth: authRoles.admin,
           },
           {
             id: "salary-scales-detail",
@@ -127,7 +176,7 @@ const tempNavigation = [
             type: "item",
             url: "/apps/salary-scales-section/salary-scales/1",
             exact: true,
-            auth: authRoles.super_admin,
+            auth: authRoles.admin,
           },
           {
             id: "new-salary-scale",
@@ -135,7 +184,50 @@ const tempNavigation = [
             type: "item",
             url: "/apps/salary-scales-section/salary-scales/new",
             exact: true,
-            auth: authRoles.super_admin,
+            auth: authRoles.admin,
+          },
+        ],
+      },
+
+      // manager
+
+      // {
+      //   id: "Receipts-hr-manager-and-manager",
+      //   title: "Receipts Management",
+      //   translate: "Receipts",
+      //   type: "collapse",
+      //   icon: "receipts",
+      //   url: "/apps/receipts/hr-manager-and-manager",
+      //   auth: authRoles.hr_manager_and_manager,
+      //   children: [
+      //     {
+      //       id: "e-commerce-products-hr-manager-and-manager",
+      //       title: "My Receipts",
+      //       type: "item",
+      //       url: "/apps/receipts/my-receipts/hr-manager-and-manager",
+      //       exact: true,
+      //       auth: authRoles.hr_manager_and_manager,
+      //     },
+      //   ],
+      // },
+
+      // userrrrrrrrrr
+      {
+        id: "Receipts",
+        title: "Receipts Management",
+        translate: "Receipts",
+        type: "collapse",
+        icon: "receipts",
+        url: "/apps/e-commerce-user",
+        auth: authRoles.manager_and_user_and_hr_manager,
+        children: [
+          {
+            id: "e-commerce-products",
+            title: "My Receipts",
+            type: "item",
+            url: "/apps/e-commerce-user/products-user",
+            exact: true,
+            auth: authRoles.manager_and_user_and_hr_manager,
           },
         ],
       },
@@ -147,15 +239,15 @@ const tempNavigation = [
         type: "collapse",
         icon: "receipts",
         url: "/apps/receipts",
-        auth: authRoles.super_admin,
+        auth: authRoles.admin,
         children: [
           {
             id: "e-commerce-products",
-            title: "Receipts Details",
+            title: "Receipts",
             type: "item",
             url: "/apps/receipts/receipts",
             exact: true,
-            auth: authRoles.super_admin,
+            auth: authRoles.admin,
           },
           {
             id: "e-commerce-new-product",
@@ -163,39 +255,10 @@ const tempNavigation = [
             type: "item",
             url: "/apps/e-commerce/products/new",
             exact: true,
-            auth: authRoles.super_admin,
+            auth: authRoles.admin,
           },
         ],
       },
-      // userrrrrrrrrr
-      {
-        id: "Receipts",
-        title: "Receipts Management",
-        translate: "Receipts",
-        type: "collapse",
-        icon: "receipts",
-        url: "/apps/e-commerce-user",
-        auth: authRoles.onlyUser,
-        children: [
-          {
-            id: "e-commerce-products",
-            title: "Receipts",
-            type: "item",
-            url: "/apps/e-commerce-user/products-user",
-            exact: true,
-            auth: authRoles.onlyUser,
-          },
-          {
-            id: "e-commerce-product-detail",
-            title: "Receipt Details",
-            type: "item",
-            url: "/apps/e-commerce-user/orders-user/1",
-            exact: true,
-            auth: authRoles.onlyUser,
-          },
-        ],
-      },
-
       {
         id: "invoice",
         title: "Invoice Management",
@@ -203,7 +266,6 @@ const tempNavigation = [
         type: "collapse",
         icon: "description",
         url: "/apps/invoices-section",
-        auth: authRoles.super_admin,
         children: [
           {
             id: "invoices",
@@ -211,7 +273,7 @@ const tempNavigation = [
             type: "item",
             url: "/apps/invoices-section/invoices",
             exact: true,
-            auth: authRoles.super_admin,
+            auth: authRoles.user,
           },
 
           {
@@ -220,7 +282,7 @@ const tempNavigation = [
             type: "item",
             url: "/apps/invoices-section/archive",
             exact: true,
-            auth: authRoles.super_admin,
+            auth: authRoles.user,
           },
           // {
           //   id: "invoice-detail",
@@ -236,7 +298,7 @@ const tempNavigation = [
             type: "item",
             url: "/apps/invoices-section/invoices/new-invoice",
             exact: true,
-            auth: authRoles.super_admin,
+            auth: authRoles.user,
           },
         ],
       },
@@ -247,29 +309,33 @@ const tempNavigation = [
         translate: "Leaves",
         type: "collapse",
         icon: "radio_button_checked",
-        url: "/apps/leaves-section",
-        auth: authRoles.admin,
+        url: "/apps/leaves-section/my-leaves",
         children: [
-          {
-            id: "leaves-section-leaves-requests",
-            title: "Leave requests",
-            type: "item",
-            url: "/apps/leaves-section/leaves",
-            exact: true,
-          },
           {
             id: "leaves-section-leaves",
             title: "Archive Leaves",
             type: "item",
             url: "/apps/leaves-section/approval-leaves",
             exact: true,
+            auth: authRoles.manager,
           },
+
+          {
+            id: "leaves-section-leaves-requests",
+            title: "Leave requests",
+            type: "item",
+            url: "/apps/leaves-section/leaves",
+            exact: true,
+            auth: authRoles.manager,
+          },
+
           {
             id: "leaves-section-my-leaves",
             title: "My Leaves",
             type: "item",
             url: "/apps/leaves-section/my-leaves",
             exact: true,
+            auth: authRoles.user,
           },
         ],
       },
@@ -281,6 +347,7 @@ const tempNavigation = [
         type: "collapse",
         icon: "category",
         url: "/apps/leaves-categories-section",
+        auth: authRoles.admin,
         children: [
           {
             id: "leaves-categories-section-categories-requests",
@@ -288,6 +355,7 @@ const tempNavigation = [
             type: "item",
             url: "/apps/leaves-categories-section/categories",
             exact: true,
+            auth: authRoles.admin,
           },
         ],
       },

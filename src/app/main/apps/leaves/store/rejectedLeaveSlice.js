@@ -5,11 +5,22 @@ import {
 } from "@reduxjs/toolkit";
 import axios from "axios";
 
+// export const getLeaves = createAsyncThunk(
+//   "leavesApp/leaves/getLeaves",
+//   async () => {
+//     const response = await axios.get("/leaves");
+//     const data = await response.data.data;
+//     console.log("leaves from backend:", data);
+
+//     return data;
+//   }
+// );
+
 export const getLeaves = createAsyncThunk(
-  "leavesApp/leaves/getLeaves",
+  "leavesApp/leaves/getMyLeaves",
   async () => {
-    const response = await axios.get("/leaves");
-    const data = await response.data.data;
+    const response = await axios.get("/users/profiles/my-profile");
+    const data = await response.data.data.leaves;
     console.log("leaves from backend:", data);
 
     return data;

@@ -89,7 +89,9 @@ function SalaryScalesTable(props) {
   }
 
   function handleClick(item) {
-    props.history.push(`/apps/salary-scales-section/salary-scales/${item.id}`);
+    props.history.push(
+      `/apps/salary-scales-section/salary-scales-hr-manager/${item.id}`
+    );
   }
 
   function handleCheck(event, id) {

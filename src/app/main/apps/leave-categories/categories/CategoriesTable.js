@@ -173,7 +173,7 @@ function CategoriesTable(props) {
                     tabIndex={-1}
                     key={n.id}
                     selected={isSelected}
-                    onClick={(event) => handleClick(n)}
+                    // onClick={(event) => handleClick(n)}
                   >
                     <TableCell
                       className="w-40 md:w-64 text-center"

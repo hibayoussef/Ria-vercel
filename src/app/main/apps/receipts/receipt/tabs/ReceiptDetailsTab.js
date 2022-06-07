@@ -115,7 +115,7 @@ function ReceiptDetailsTab() {
                   </td>
                   <td>
                     <Typography className="truncate">
-                      {order.user.phoneNumber}
+                      {order.user.phoneNumber || '-'}
                     </Typography>
                   </td>
                 </tr>

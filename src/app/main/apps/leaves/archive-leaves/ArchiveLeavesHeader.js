@@ -35,7 +35,7 @@ function ArchiveLeavesHeader(props) {
           delay={300}
           className="text-16 md:text-24 mx-12 font-semibold"
         >
-          Approved Leaves
+          Archived Leaves
         </Typography>
       </div>
 

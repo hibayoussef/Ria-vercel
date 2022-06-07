@@ -23,6 +23,7 @@ function LeaveDetailsTab() {
   const dispatch = useDispatch();
   const order = useSelector(({ leavesApp }) => leavesApp.leave);
   console.log("order details: ", order);
+  console.log("orty: ", order?.data?.requester?.associatedRoles?.role?.roleId);
 
   const [map, setMap] = useState("shipping");
 
@@ -174,8 +175,6 @@ function LeaveDetailsTab() {
             </tbody>
           </table>
         </div>
-
-       
       </div>
 
       <div className="pb-48">
@@ -194,9 +193,10 @@ function LeaveDetailsTab() {
                   <Typography className="font-semibold">Name</Typography>
                 </th>
                 <th>
-                  <Typography className="font-semibold">Deduction Amount</Typography>
+                  <Typography className="font-semibold">
+                    Deduction Amount
+                  </Typography>
                 </th>
-               
               </tr>
             </thead>
             <tbody>
@@ -208,16 +208,12 @@ function LeaveDetailsTab() {
                 <td>
                   <span className="truncate">{`${order?.data?.deductionAmount}`}</span>
                 </td>
-               
               </tr>
             </tbody>
           </table>
         </div>
-
-
-        
       </div>
-        
+
       {order?.data?.status === "pending_approval" && (
         <motion.div
           initial={{ opacity: 0, x: 20 }}

@@ -21,6 +21,7 @@ import moment from "moment";
 import VisibilityIcon from "@material-ui/icons/Visibility";
 
 function MyLeavesTable(props) {
+  console.log("props: ", props);
   const dispatch = useDispatch();
   const orders = useSelector(selectMyLeaves);
   const searchText = useSelector(
@@ -36,6 +37,9 @@ function MyLeavesTable(props) {
     direction: "asc",
     id: null,
   });
+
+  console.log("orders: ", orders);
+  console.log("search text: ", searchText);
 
   useEffect(() => {
  
@@ -210,7 +214,7 @@ function MyLeavesTable(props) {
                       component="th"
                       scope="row"
                     >
-                      {n.manager.name}
+                      {n.requester.name}
                     </TableCell>
 
                     <TableCell

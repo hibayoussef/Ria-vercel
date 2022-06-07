@@ -4,6 +4,7 @@ import leaves from "./leavesSlice";
 import approvalLeaves from "./approvalLeaveSlice";
 import myLeaves from "./myLeavesSlice";
 import rejectedLeaves from "./rejectedLeaveSlice";
+import pendingLeaves from "./pendingLeavesSlice";
 
 const reducer = combineReducers({
   leaves,
@@ -11,6 +12,7 @@ const reducer = combineReducers({
   approvalLeaves,
   myLeaves,
   rejectedLeaves,
+  pendingLeaves
 });
 
 export default reducer;

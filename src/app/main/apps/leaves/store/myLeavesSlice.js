@@ -7,15 +7,15 @@ import axios from "axios";
 
 export const getMyLeaves = createAsyncThunk(
   "leavesApp/leaves/getMyLeaves",
-  async (id) => {
-    console.log("iddd: ", id);
-    const response = await axios.get(`/leaves/${id}` );
-    const data = await response.data.data;
-    console.log("leaves from backend My Leaves:", data);
+  async () => {
+    const response = await axios.get("/users/profiles/my-profile");
+    const data = await response.data.data.leaves;
+    console.log("leaves from backend:", data);
 
     return data;
   }
 );
+
 
 const myLeavesAdapter = createEntityAdapter({});
 
@@ -23,7 +23,7 @@ export const { selectAll: selectMyLeaves, selectById: selectMyLeaveById } =
   myLeavesAdapter.getSelectors((state) => state.leavesApp.myLeaves);
 
 const leavesSlice = createSlice({
-  name: "leavesApp/leaves",
+  name: "leavesApp/getMyLeaves",
   initialState: myLeavesAdapter.getInitialState({
     searchText: "",
   }),

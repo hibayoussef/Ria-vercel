@@ -157,9 +157,9 @@ function ReviewTable(props) {
         animate={{ opacity: 1, transition: { delay: 0.1 } }}
         className="flex flex-1 items-center justify-center h-full"
       >
-        <Typography color="textSecondary" variant="h5">
+        <h3 style={{paddingTop: '4rem'}}>
           There are no reviewed Invoices!
-        </Typography>
+        </h3>
       </motion.div>
     );
   }
